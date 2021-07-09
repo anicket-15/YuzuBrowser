@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "546287366860",
+    "project_id": "appyhigh-browser-assignment",
+    "storage_bucket": "appyhigh-browser-assignment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546287366860:android:82fa20e1f30aceffba4869",
+        "android_client_info": {
+          "package_name": "jp.hazuki.yuzubrowser.browser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546287366860-nv7fqk7gde9uumihgnpk738l0rkbf405.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoz6R2_UqC4jIJFn98c_7w1rqmTJg2q28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546287366860-nv7fqk7gde9uumihgnpk738l0rkbf405.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546287366860:android:3482b294c627fee7ba4869",
+        "android_client_info": {
+          "package_name": "jp.hazuki.yuzubrowser.legacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546287366860-nv7fqk7gde9uumihgnpk738l0rkbf405.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoz6R2_UqC4jIJFn98c_7w1rqmTJg2q28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546287366860-nv7fqk7gde9uumihgnpk738l0rkbf405.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
