@@ -25,6 +25,7 @@ import android.webkit.URLUtil;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 import jp.hazuki.yuzubrowser.adblock.filter.fastmatch.FastMatcherFactory;
 import jp.hazuki.yuzubrowser.legacy.R;
 import jp.hazuki.yuzubrowser.ui.utils.PackageUtils;
@@ -71,6 +72,8 @@ public class WebUtils {
     }
 
     public static Intent createShareWebIntent(String url, String title) {
+        CreateDynamicLinks createDynamicLinks = new CreateDynamicLinks();
+        url = createDynamicLinks.getDynamicLink(url,title);
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, url);

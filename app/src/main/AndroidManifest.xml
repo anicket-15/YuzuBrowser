@@ -66,6 +66,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW"/>-->
+<!--                <category android:name="android.intent.category.DEFAULT"/>-->
+<!--                <category android:name="android.intent.category.BROWSABLE"/>-->
+
+<!--                <data android:scheme="https"-->
+<!--                    android:host="aniketbrowser.page.link"/>-->
+
+<!--                <data android:scheme="http"-->
+<!--                    android:host="aniketbrowser.page.link"/>-->
+
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".HandleIntentActivity"
@@ -76,45 +89,49 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="http" />
-                <data android:scheme="https" />
+                <data android:scheme="http"
+                    android:host="aniketbrowser.page.link"
+                    />
+                <data android:scheme="https"
+                    android:host="aniketbrowser.page.link"
+                    />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
 
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:mimeType="text/html" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="application/xhtml+xml" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+<!--                <data android:scheme="http" />-->
+<!--                <data android:scheme="https" />-->
+<!--                <data android:mimeType="text/html" />-->
+<!--                <data android:mimeType="text/plain" />-->
+<!--                <data android:mimeType="application/xhtml+xml" />-->
+<!--            </intent-filter>-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
 
-                <data android:scheme="file" />
-                <data android:scheme="content" />
-                <data android:mimeType="text/html" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="application/xhtml+xml" />
-                <data android:mimeType="application/x-webarchive-xml" />
-                <data android:mimeType="multipart/related" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.WEB_SEARCH" />
+<!--                <data android:scheme="file" />-->
+<!--                <data android:scheme="content" />-->
+<!--                <data android:mimeType="text/html" />-->
+<!--                <data android:mimeType="text/plain" />-->
+<!--                <data android:mimeType="application/xhtml+xml" />-->
+<!--                <data android:mimeType="application/x-webarchive-xml" />-->
+<!--                <data android:mimeType="multipart/related" />-->
+<!--            </intent-filter>-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.WEB_SEARCH" />-->
 
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.speech.action.VOICE_SEARCH_RESULTS" />
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--            </intent-filter>-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.speech.action.VOICE_SEARCH_RESULTS" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity-alias

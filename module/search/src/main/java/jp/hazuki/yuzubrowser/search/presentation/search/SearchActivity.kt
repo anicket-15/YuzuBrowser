@@ -21,6 +21,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.util.Log
 import android.view.*
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -56,6 +57,7 @@ class SearchActivity : ThemeActivity(), SearchButton.Callback, SearchSuggestAdap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("searchActivity101","Inside On Create")
         binding = DataBindingUtil.setContentView(this, R.layout.search_activity)
         barBinding = SearchSeachBarBinding.inflate(layoutInflater, binding.rootLayout, false)
 

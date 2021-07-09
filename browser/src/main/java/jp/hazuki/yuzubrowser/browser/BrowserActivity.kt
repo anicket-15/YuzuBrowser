@@ -27,9 +27,11 @@ import android.content.res.Resources
 import android.gesture.GestureOverlayView
 import android.graphics.Color
 import android.media.AudioManager
+import android.net.Uri
 import android.os.*
 import android.print.PrintManager
 import android.text.TextUtils
+import android.util.Log
 import android.view.*
 import android.webkit.*
 import android.widget.*
@@ -40,6 +42,8 @@ import androidx.documentfile.provider.DocumentFile
 import androidx.webkit.WebViewCompat
 import androidx.webkit.WebViewFeature
 import com.google.android.material.appbar.AppBarLayout
+import com.google.firebase.dynamiclinks.ktx.dynamicLinks
+import com.google.firebase.ktx.Firebase
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.AndroidEntryPoint
 import jp.hazuki.asyncpermissions.AsyncPermissions
@@ -95,6 +99,7 @@ import jp.hazuki.yuzubrowser.legacy.toolbar.ToolbarManager
 import jp.hazuki.yuzubrowser.legacy.toolbar.sub.WebViewFindDialog
 import jp.hazuki.yuzubrowser.legacy.toolbar.sub.WebViewFindDialogFactory
 import jp.hazuki.yuzubrowser.legacy.toolbar.sub.WebViewPageFastScroller
+import jp.hazuki.yuzubrowser.legacy.utils.CreateDynamicLinks
 import jp.hazuki.yuzubrowser.legacy.utils.DisplayUtils
 import jp.hazuki.yuzubrowser.legacy.utils.WebUtils
 import jp.hazuki.yuzubrowser.legacy.utils.extensions.saveArchive
@@ -241,6 +246,7 @@ class BrowserActivity : BrowserBaseActivity(), BrowserController, FinishAlertDia
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("firstActivity","Line 244")
 
         binding = BrowserActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -350,10 +356,16 @@ class BrowserActivity : BrowserBaseActivity(), BrowserController, FinishAlertDia
             userActionManager.onTouchEvent(event)
         }
         scrollSlop = ViewConfiguration.get(this).scaledPagingTouchSlop
+
+
+
     }
 
     override fun onStart() {
         super.onStart()
+
+
+//        openInNewTab("https://www.google.co.in/",TabType.DEFAULT,true)
 
         if (AppPrefs.auto_tab_save_delay.get() > 0)
             handler.post(saveTabsRunnable)

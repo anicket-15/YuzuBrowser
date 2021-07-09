@@ -23,8 +23,11 @@ import android.os.BadParcelableException
 import android.os.Bundle
 import android.provider.Browser
 import android.speech.RecognizerResultsIntent
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import com.google.firebase.dynamiclinks.ktx.dynamicLinks
+import com.google.firebase.ktx.Firebase
 import jp.hazuki.yuzubrowser.browser.BrowserActivity
 import jp.hazuki.yuzubrowser.legacy.Constants.intent.EXTRA_OPEN_FROM_YUZU
 import jp.hazuki.yuzubrowser.legacy.utils.WebUtils
@@ -44,55 +47,38 @@ class HandleIntentActivity : FragmentActivity() {
         finish()
     }
 
+    private fun checkFirebase(intent: Intent) : Boolean
+    {
+        var flag = false
+        Firebase.dynamicLinks
+            .getDynamicLink(intent)
+            .addOnSuccessListener (this){
+                var deepLink : Uri?=null
+                if(it!=null)
+                {
+                    deepLink = it.link
+                    Log.d("checkURL",deepLink.toString())
+                    flag = true
+                }
+            }
+        return flag
+    }
+
     private fun handleIntent(intent: Intent) {
-        val action = intent.action
 
-        if (Intent.ACTION_VIEW == action) {
-            var url = intent.dataString
-            if (url.isNullOrEmpty())
-                url = intent.getStringExtra(Intent.EXTRA_TEXT)
-            if (!url.isNullOrEmpty()) {
-                try {
-                    val openInNewTab = intent.getBooleanExtra(EXTRA_OPEN_FROM_YUZU, false)
-                    startBrowser(url, openInNewTab, openInNewTab)
-                } catch (e: BadParcelableException) {
-                    startBrowser(url, window = false, openInNewTab = false)
-                }
-
-                return
-            }
-        } else if (Intent.ACTION_WEB_SEARCH == action) {
-            val query = intent.getStringExtra(SearchManager.QUERY)
-            if (query != null) {
-                val url = WebUtils.makeSearchUrlFromQuery(query, AppPrefs.search_url.get(), "%s")
-                if (url.isNotEmpty()) {
-                    startBrowser(url, packageName == intent.getStringExtra(Browser.EXTRA_APPLICATION_ID), false)
-                    return
+        var url : String ?= null
+        Firebase.dynamicLinks
+            .getDynamicLink(intent)
+            .addOnSuccessListener (this){
+                var deepLink : Uri?=null
+                if(it!=null)
+                {
+                    deepLink = it.link
+                    Log.d("checkURL",deepLink.toString())
+                    url = deepLink.toString()
+                    startBrowser(url!!, true, true)
                 }
             }
-        } else if (Intent.ACTION_SEND == action) {
-            val query = intent.getStringExtra(Intent.EXTRA_TEXT)
-            if (!query.isNullOrEmpty()) {
-                if (query.isUrl()) {
-                    startBrowser(query, window = false, openInNewTab = false)
-                } else {
-                    var text = WebUtils.extractionUrl(query)
-                    if (query == text) {
-                        text = query.makeUrlFromQuery(AppPrefs.search_url.get(), "%s")
-                    }
-                    startBrowser(text, window = false, openInNewTab = false)
-                }
-                return
-            }
-        } else if (RecognizerResultsIntent.ACTION_VOICE_SEARCH_RESULTS == action) {
-            val urls = intent.getStringArrayListExtra(RecognizerResultsIntent.EXTRA_VOICE_SEARCH_RESULT_URLS)
-            if (!urls.isNullOrEmpty()) {
-                startBrowser(urls[0], window = false, openInNewTab = false)
-                return
-            }
-        }
-
-        Toast.makeText(applicationContext, R.string.page_not_found, Toast.LENGTH_SHORT).show()
     }
 
     private fun startBrowser(url: String, window: Boolean, openInNewTab: Boolean) {

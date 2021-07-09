@@ -23,6 +23,7 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.text.TextUtils
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.CookieManager
@@ -131,6 +132,7 @@ class ActionExecutor(
                         return true
                     }
                     SingleAction.LPRESS_SHARE -> {
+                        Log.d("shareIntent","Line 135")
                         WebUtils.shareWeb(controller.activity, url, null)
                         return true
                     }
@@ -302,6 +304,7 @@ class ActionExecutor(
                         return true
                     }
                     SingleAction.LPRESS_SHARE -> {
+                        Log.d("shareIntent","Line 307")
                         target.webView.requestFocusNodeHref(WebSrcImageShareWebHandler(controller.activity).obtainMessage())
                         return true
                     }
@@ -920,6 +923,8 @@ class ActionExecutor(
                     .show(controller.activity.supportFragmentManager, "add white page")
             SingleAction.SHARE_WEB -> {
                 val tab = controller.getTab(actionTarget)
+                Log.d("shareIntent","Line 926")
+                Log.d("shareIntent","\n"+tab.url+"\n"+tab.title)
                 WebUtils.shareWeb(controller.activity, tab.url, tab.title)
             }
             SingleAction.OPEN_OTHER -> WebUtils.openInOtherApp(controller.activity, controller.getTab(actionTarget).url)
