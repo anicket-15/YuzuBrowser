@@ -47,23 +47,6 @@ class HandleIntentActivity : FragmentActivity() {
         finish()
     }
 
-    private fun checkFirebase(intent: Intent) : Boolean
-    {
-        var flag = false
-        Firebase.dynamicLinks
-            .getDynamicLink(intent)
-            .addOnSuccessListener (this){
-                var deepLink : Uri?=null
-                if(it!=null)
-                {
-                    deepLink = it.link
-                    Log.d("checkURL",deepLink.toString())
-                    flag = true
-                }
-            }
-        return flag
-    }
-
     private fun handleIntent(intent: Intent) {
 
         var url : String ?= null
@@ -77,6 +60,10 @@ class HandleIntentActivity : FragmentActivity() {
                     Log.d("checkURL",deepLink.toString())
                     url = deepLink.toString()
                     startBrowser(url!!, true, true)
+                }
+                else
+                {
+                    Toast.makeText(this,"Invalid Link",Toast.LENGTH_SHORT).show()
                 }
             }
     }

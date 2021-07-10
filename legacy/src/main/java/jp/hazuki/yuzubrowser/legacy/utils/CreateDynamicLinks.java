@@ -21,6 +21,7 @@ public class CreateDynamicLinks {
 
     private static final String domainUrlPrefix = "https://aniketbrowser.page.link";
     private static final String appPackageName = "jp.hazuki.yuzubrowser.browser";
+    private static final Uri playStoreLink = Uri.parse("https://play.google.com/store/apps/details?id=jp.hazuki.yuzubrowser");
 
     private DynamicLink dynamicLink;
 
@@ -31,7 +32,10 @@ public class CreateDynamicLinks {
             .createDynamicLink()
             .setLink(Uri.parse(URL))
             .setDomainUriPrefix(domainUrlPrefix)
-            .setAndroidParameters(new DynamicLink.AndroidParameters.Builder(appPackageName).build())
+            .setAndroidParameters(new DynamicLink.AndroidParameters
+                .Builder(appPackageName)
+                .setFallbackUrl(playStoreLink)
+                .build())
             .setSocialMetaTagParameters(new DynamicLink.SocialMetaTagParameters.Builder().setTitle(TITLE).build())
             .buildDynamicLink();
 
